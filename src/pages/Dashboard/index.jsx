@@ -1,11 +1,11 @@
 import { Component } from 'react';
 
 import Header from '../../components/Header';
-import api from '../../services/api';
-import Food from '../../components/Food';
-import ModalAddFood from '../../components/ModalAddFood';
-import ModalEditFood from '../../components/ModalEditFood';
-import { FoodsContainer } from './styles';
+import api from '../../services/api.js';
+import Food from '../../components/Food/index';
+import ModalAddFood from '../../components/ModalAddFood/index.jsx';
+import ModalEditFood from '../../components/ModalEditFood/index.jsx';
+import { FoodsContainer } from './styles.js';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Dashboard extends Component {
       editingFood: {},
       modalOpen: false,
       editModalOpen: false,
-    }
+    };
   }
 
   async componentDidMount() {
@@ -37,16 +37,16 @@ class Dashboard extends Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   handleUpdateFood = async food => {
     const { foods, editingFood } = this.state;
 
     try {
-      const foodUpdated = await api.put(
-        `/foods/${editingFood.id}`,
-        { ...editingFood, ...food },
-      );
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
+        ...editingFood,
+        ...food,
+      });
 
       const foodsUpdated = foods.map(f =>
         f.id !== foodUpdated.data.id ? f : foodUpdated.data,
@@ -56,7 +56,7 @@ class Dashboard extends Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   handleDeleteFood = async id => {
     const { foods } = this.state;
@@ -66,23 +66,23 @@ class Dashboard extends Component {
     const foodsFiltered = foods.filter(food => food.id !== id);
 
     this.setState({ foods: foodsFiltered });
-  }
+  };
 
   toggleModal = () => {
     const { modalOpen } = this.state;
 
     this.setState({ modalOpen: !modalOpen });
-  }
+  };
 
   toggleEditModal = () => {
     const { editModalOpen } = this.state;
 
     this.setState({ editModalOpen: !editModalOpen });
-  }
+  };
 
   handleEditFood = food => {
     this.setState({ editingFood: food, editModalOpen: true });
-  }
+  };
 
   render() {
     const { modalOpen, editModalOpen, editingFood, foods } = this.state;
@@ -116,6 +116,6 @@ class Dashboard extends Component {
       </>
     );
   }
-};
+}
 
 export default Dashboard;

@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface IValues {
+  isFocused: boolean;
+  isFilled: boolean;
+}
+
+export const Container = styled.div<IValues>`
   display: flex;
   align-items: center;
 

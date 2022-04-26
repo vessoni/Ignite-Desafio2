@@ -1,8 +1,8 @@
 import { Component, createRef } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
 
-import { Form } from './styles';
-import Modal from '../Modal';
+import { Form } from './styles.js';
+import Modal from '../Modal/index.jsx';
 import Input from '../Input';
 
 class ModalAddFood extends Component {
@@ -42,6 +42,6 @@ class ModalAddFood extends Component {
       </Modal>
     );
   }
-};
+}
 
 export default ModalAddFood;
