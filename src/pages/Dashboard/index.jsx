@@ -3,7 +3,7 @@ import { Component } from 'react';
 import Header from '../../components/Header';
 import api from '../../services/api.js';
 import Food from '../../components/Food/index';
-import ModalAddFood from '../../components/ModalAddFood/index.jsx';
+import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood/index.jsx';
 import { FoodsContainer } from './styles.js';
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, useRef, useState, useCallback } from 'react';
@@ -6,7 +7,18 @@ import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
-const Input: React.FC = ({ name, icon: Icon, ...rest }: any) => {
+interface Props {
+  name: string;
+  placeholder: string;
+  icon?: any;
+}
+type InputProps = JSX.IntrinsicElements['input'] & Props;
+
+export default function Input({
+  name,
+  icon: Icon,
+  ...rest
+}: InputProps): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -45,6 +57,4 @@ const Input: React.FC = ({ name, icon: Icon, ...rest }: any) => {
       />
     </Container>
   );
-};
-
-export default Input;
+}
