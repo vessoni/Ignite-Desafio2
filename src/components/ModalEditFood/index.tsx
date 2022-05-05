@@ -9,31 +9,34 @@ import { IFood } from '../Interfaces/food';
 interface Props {
   setIsOpen: () => void;
   isOpen: boolean;
-  handleAddFood: (data: IFood) => void;
+  handleUpdateFood: (data: IFood) => void;
+  editingFood: IFood;
 }
 
-function ModalAddFood({
+function ModalEditFood({
   setIsOpen,
   isOpen,
-  handleAddFood,
+  handleUpdateFood,
+  editingFood,
 }: Props): JSX.Element {
   const handleSubmit = async (data: IFood) => {
-    handleAddFood(data);
+    handleUpdateFood(data);
     setIsOpen();
   };
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Form onSubmit={handleSubmit}>
-        <h1>Novo Prato</h1>
+      <Form onSubmit={handleSubmit} initialData={editingFood}>
+        <h1>Editar Prato</h1>
         <Input name="image" placeholder="Cole o link aqui" />
 
         <Input name="name" placeholder="Ex: Moda Italiana" />
         <Input name="price" placeholder="Ex: 19.90" />
 
         <Input name="description" placeholder="Descrição" />
-        <button type="submit" data-testid="add-food-button">
-          <p className="text">Adicionar Prato</p>
+
+        <button type="submit" data-testid="edit-food-button">
+          <div className="text">Editar Prato</div>
           <div className="icon">
             <FiCheckSquare size={24} />
           </div>
@@ -43,4 +46,4 @@ function ModalAddFood({
   );
 }
 
-export default ModalAddFood;
+export default ModalEditFood;

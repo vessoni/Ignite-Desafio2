@@ -1,8 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Routes from './routes/index.jsx';
+import Routes from './routes';
 
-import GlobalStyle from './styles/global.js';
+import GlobalStyle from './styles/global';
 
 export function App(): JSX.Element {
   return (
